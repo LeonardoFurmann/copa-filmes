@@ -2,41 +2,39 @@
     --bg-color: #161616;
     --light-color: #ffffff;
     --primary-color: #C10D0D;
+    --font-bungee: "Bungee Shade", sans-serif;
+    --font-roboto: "Roboto", sans-serif;
 }
 
-body,
-h1,
-a,
-button {
+/* Reset */
+body, h1, a, button, p {
     margin: 0;
     padding: 0;
 }
 
 a {
     text-decoration: none;
-    color: currentColor;
+    color: var(--light-color);
 }
 
-.bungee-regular {
-    font-family: "Bungee Shade", sans-serif;
+/* Estilos Globais */
+.font-bungee {
+    font-family: var(--font-bungee);
     font-weight: 600;
-    font-style: normal;
+}
 
+.font-roboto {
+    font-family: var(--font-roboto);
 }
 
 .primary-color {
     color: var(--primary-color);
 }
 
-.font-3d {
-    text-shadow: 0 1px 0 #17202A, 0 2px 0 #17202A,
-        0 7px 0 #17202A, 0 8px 0 #17202A,
-        0 11px 0 #17202A, 0 12px 0 #17202A;
-}
-
+/* Container */
 .container {
     background: var(--bg-color);
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,8 +45,8 @@ a {
 .titulo {
     font-size: 7rem;
     font-weight: bold;
-    font-family: "Roboto", sans-serif;
-    color: var(--light-color)
+    font-family: var(--font-roboto);
+    color: var(--light-color);
 }
 
 .container-btn button {
@@ -56,7 +54,7 @@ a {
     border-radius: 10px;
     color: var(--light-color);
     border: 1px solid var(--light-color);
-    font-family: "Roboto", sans-serif;
+    font-family: var(--font-roboto);
     cursor: pointer;
 }
 
@@ -76,44 +74,68 @@ a {
     background: #0684CB;
 }
 
-.container-copa {
-    background: var(--bg-color);
-    height: 100vh;
-    width: 100%;
-}
-
+/* Container Title */
 .container-title {
     display: flex;
     align-items: center;
     flex-direction: column;
     max-width: 2000px;
     margin: 0 auto;
-    & .titulo {
-        font-size: 2.5rem;
-        margin: 1rem;
-    }
+}
+
+.container-title .titulo {
+    font-size: 2rem;
+    margin: 1rem;
+}
+
+/* Container Film */
+
+.container-copa {
+    background: var(--bg-color);
+    height: 100vh;
+    width: 100%;
 }
 
 .container-film {
     display: flex;
-    width: 100%;
-    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
     max-width: 1200px;
     margin: 5rem auto;
-    & img {
-        width: 26rem;
-        height: 37rem;
-        border: 1px solid var(--light-color);
-        border-radius: 3px;
-    }
+    gap: 50px;
 }
 
+.container-film img {
+    width: 26rem;
+    height: 37rem;
+    border: 1px solid var(--light-color);
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 10px;
+    transition: width 1s, height 1s;
+}
+
+.container-film .name-film {
+    text-align: center;
+    color: var(--light-color);
+    font-size: 1.8rem;
+    font-family: var(--font-roboto);
+    font-weight: 500;
+}
+
+.container-film img:hover {
+    width: 30rem;
+    height: 42.5rem;
+}
+
+/* Container VS */
 .container-vs {
     display: flex;
     align-items: center;
-    & .titulo {
-        letter-spacing: -5px;
-        font-size: 4.5rem;
-    }
+    margin: 10px;
+}
+
+.container-vs .titulo {
+    letter-spacing: -5px;
+    font-size: 4.5rem;
 }
