@@ -10,7 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -19,10 +21,18 @@
             <h1 class="titulo font-3d">COPA <span class="primary-color ">FILMES</span></h1>
         </div>
         <div class="container-btn">
-            <button id="btn_start" class="btn-start"> <a href="./copa.html">Começar</a></button>
+            <button id="btn_start" class="btn-start" onclick="startTornament()"><a>Começar</a></button>
             <button id="btn_help" class="btn-help">?</button>
         </div>
     </div>
 </body>
+<script>
+    const URL_COPA = 'copa.html';
+
+    function startTornament() {
+        localStorage.setItem('isTournamentStarted', true);
+        window.location.href = URL_COPA;
+    }
+</script>
 
 </html>
