@@ -9,7 +9,9 @@ let tamanho = 0;
 const options = { method: 'GET', headers: { accept: 'application/json' } };
 const base_url_img = "https://image.tmdb.org/t/p/original"
 const contador = document.getElementById("contador");
-const div_movies = document.querySelectorAll('.movie');
+const div_movies = document.querySelectorAll('.container-movies .movie');
+const container_movies = document.querySelector('.container-movies')
+const container_winner = document.querySelector('.container-winner')
 
 div_movies.forEach((div_movie) => {
   div_movie.addEventListener('click', () => {
@@ -22,22 +24,19 @@ async function fetchMovies() {
   const data = await response.json();
   movies = data.results.slice(0, 16);
   tamanho = movies.length;
-  console.log('fetch')
 }
 
 
 async function startMovies() {
   //if (localStorage.getItem('isTournamentStarted') === 'true') {
-  console.log(true)
   await fetchMovies();
   await startRound();
-  localStorage.removeItem('isTournamentStarted');
+  //localStorage.removeItem('isTournamentStarted');
   // } 
 }
 
 async function startRound() { 
   if (temp.length === (tamanho / 2)) {
-    console.log("temp if ", temp.length)
     tamanho = (tamanho / 2);
     contador.innerText = `${tamanho} filmes`;
     movies = temp;
@@ -46,10 +45,9 @@ async function startRound() {
 
   shuffle(movies);
 
-  console.log("movies ", movies)
+  console.log("movies ", movies.length)
 
   div_movies.forEach((movie) => {
-    console.log(movies[0]);
     movie.children[0].src = base_url_img + movies[0].poster_path
     movie.children[1].innerText = movies[0].title;
     movie.dataset.id = movies[0].id;
@@ -59,14 +57,28 @@ async function startRound() {
 
 }
 
+function winner(movie){
+  console.log(`o filme ${movie.title} ganhou!!!!`);
+  container_movies.style.display = "none"
+  contador.style.display = "none"
+  container_winner.style.display = "block"
+  const div_movie = container_winner.querySelector('.movie')
+  div_movie.children[0].src = base_url_img + movie.poster_path
+  div_movie.children[1].innerText = movie.title;
+  div_movie.dataset.id = movie.id;
+
+}
+
 async function selectMovie(div_movie) {
   const selectedMovie = getMovieById(div_movie.dataset.id);
+  
+  if (movies.length == 0 && temp.length == 0) {     
+      winner(selectedMovie)
+      return
+  }
+
   temp.unshift(selectedMovie);
 
-  if (movies.length == 0 && temp.length == 0) {   //verificar depois
-    console.log(`o filme ${selectedMovie.title} ganhou!!!!`);
-    return
-  }
   moviesRound = [];
   await startRound()
   console.log("temp ", temp.length)
