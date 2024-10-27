@@ -38,7 +38,7 @@ async function startMovies() {
 async function startRound() { 
   if (temp.length === (tamanho / 2)) {
     tamanho = (tamanho / 2);
-    contador.innerText = `${tamanho} filmes`;
+    //contador.innerText = `${tamanho} filmes`;
     movies = temp;
     temp = [];
   }
@@ -60,7 +60,7 @@ async function startRound() {
 function winner(movie){
   console.log(`o filme ${movie.title} ganhou!!!!`);
   container_movies.style.display = "none"
-  contador.style.display = "none"
+  //contador.style.display = "none"
   container_winner.style.display = "block"
   const div_movie = container_winner.querySelector('.movie')
   div_movie.children[0].src = base_url_img + movie.poster_path
